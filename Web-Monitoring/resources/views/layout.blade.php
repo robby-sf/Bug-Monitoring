@@ -84,8 +84,8 @@
                             </div>
 
                             <div class="max-h-80 overflow-y-auto divide-y divide-dark-border">
-                                <a href="/issues" class="p-4 flex gap-4 hover:bg-white/[0.03] transition">
-                                    <div class="w-10 h-10 rounded-xl bg-red-500/10 text-red-500 flex items-center justify-center flex-shrink-0 shadow-inner">
+                                <a href="/issues" class="p-4 flex gap-4 hover:bg-white/3 transition">
+                                    <div class="w-10 h-10 rounded-xl bg-red-500/10 text-red-500 flex items-center justify-center shrink-0 shadow-inner">
                                         <i class="fas fa-bolt text-xs"></i>
                                     </div>
                                     <div>
@@ -96,8 +96,8 @@
                                     </div>
                                 </a>
 
-                                <a href="/team" class="p-4 flex gap-4 hover:bg-white/[0.03] transition">
-                                    <div class="w-10 h-10 rounded-xl bg-accent-blue/10 text-accent-blue flex items-center justify-center flex-shrink-0 font-bold text-[10px] shadow-inner">
+                                <a href="/team" class="p-4 flex gap-4 hover:bg-white/3 transition">
+                                    <div class="w-10 h-10 rounded-xl bg-accent-blue/10 text-accent-blue flex items-center justify-center shrink-0 font-bold text-[10px] shadow-inner">
                                         SC
                                     </div>
                                     <div>
@@ -109,7 +109,7 @@
                                 </a>
                             </div>
 
-                            <a href="/notification" class="block p-3.5 text-center text-[11px] text-gray-500 hover:text-white transition font-bold border-t border-dark-border bg-white/[0.01]">
+                            <a href="/notification" class="block p-3.5 text-center text-[11px] text-gray-500 hover:text-white transition font-bold border-t border-dark-border bg-white/1">
                                 View All Notifications
                             </a>
                         </div>

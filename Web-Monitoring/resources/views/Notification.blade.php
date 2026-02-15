@@ -14,8 +14,8 @@
     <div class="bg-dark-card border border-dark-border rounded-2xl overflow-hidden shadow-xl">
         <div class="divide-y divide-dark-border">
             
-            <div class="p-6 flex gap-6 hover:bg-white/[0.02] transition bg-blue-500/[0.02] border-l-4 border-l-red-500">
-                <div class="w-12 h-12 rounded-2xl bg-red-500/10 text-red-500 flex items-center justify-center flex-shrink-0 shadow-lg">
+            <div class="p-6 flex gap-6 hover:bg-white/2 transition bg-blue-500/2 border-l-4 border-l-red-500">
+                <div class="w-12 h-12 rounded-2xl bg-red-500/10 text-red-500 flex items-center justify-center shrink-0 shadow-lg">
                     <i class="fas fa-bolt text-lg"></i>
                 </div>
                 <div class="flex-1">
@@ -36,8 +36,8 @@
                 </div>
             </div>
 
-            <div class="p-6 flex gap-6 hover:bg-white/[0.02] transition">
-                <div class="w-12 h-12 rounded-2xl bg-accent-blue/10 text-accent-blue flex items-center justify-center flex-shrink-0 font-bold shadow-lg text-sm">
+            <div class="p-6 flex gap-6 hover:bg-white/2 transition">
+                <div class="w-12 h-12 rounded-2xl bg-accent-blue/10 text-accent-blue flex items-center justify-center shrink-0 font-bold shadow-lg text-sm">
                     SC
                 </div>
                 <div class="flex-1">
@@ -56,8 +56,8 @@
                 </div>
             </div>
 
-            <div class="p-6 flex gap-6 hover:bg-white/[0.02] transition">
-                <div class="w-12 h-12 rounded-2xl bg-green-500/10 text-green-500 flex items-center justify-center flex-shrink-0 shadow-lg">
+            <div class="p-6 flex gap-6 hover:bg-white/2 transition">
+                <div class="w-12 h-12 rounded-2xl bg-green-500/10 text-green-500 flex items-center justify-center shrink-0 shadow-lg">
                     <i class="fas fa-folder-plus text-lg"></i>
                 </div>
                 <div class="flex-1">
@@ -75,7 +75,7 @@
 
         </div>
 
-        <div class="p-4 bg-white/[0.01] border-t border-dark-border text-center">
+        <div class="p-4 bg-white/1 border-t border-dark-border text-center">
             <button class="text-xs text-gray-500 font-bold hover:text-white transition uppercase tracking-widest">
                 Load Older Notifications
             </button>

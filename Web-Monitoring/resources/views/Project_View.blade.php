@@ -49,7 +49,7 @@
     </div>
 
     <div class="bg-dark-card border border-dark-border rounded-3xl overflow-hidden shadow-2xl">
-        <div class="p-8 border-b border-dark-border bg-white/[0.01] flex justify-between items-center">
+        <div class="p-8 border-b border-dark-border bg-white/1 flex justify-between items-center">
             <h4 class="text-white font-extrabold text-lg italic">Active Project Issues</h4>
             <div class="flex gap-2">
                 <button class="w-8 h-8 rounded-lg bg-dark-bg border border-dark-border flex items-center justify-center text-gray-500 hover:text-white transition cursor-pointer">
@@ -59,7 +59,7 @@
         </div>
         
         <div class="divide-y divide-dark-border">
-            <div class="p-6 flex items-center justify-between hover:bg-white/[0.02] transition group">
+            <div class="p-6 flex items-center justify-between hover:bg-white/2 transition group">
                 <div class="flex items-center gap-6">
                     <div class="w-12 h-12 rounded-2xl bg-red-500/10 text-red-500 flex items-center justify-center border border-red-500/20 group-hover:scale-110 transition shadow-inner">
                         <i class="fas fa-bug"></i>
@@ -88,7 +88,7 @@
 
             </div>
 
-        <div class="p-4 text-center bg-white/[0.01]">
+        <div class="p-4 text-center bg-white/1">
             <a href="/issues" class="text-[10px] text-gray-600 hover:text-white font-black uppercase tracking-[0.2em] transition">View All Project Activity</a>
         </div>
     </div>

@@ -16,7 +16,7 @@
             @csrf
             <div class="p-8 space-y-8">
                 
-                <div class="flex items-center gap-6 p-6 bg-white/[0.02] rounded-2xl border border-white/5">
+                <div class="flex items-center gap-6 p-6 bg-white/2 rounded-2xl border border-white/5">
                     <div class="w-20 h-20 rounded-full bg-blue-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg shadow-blue-600/20">
                         SC
                     </div>
@@ -68,7 +68,7 @@
                     </div>
                 </div>
 
-                <div class="flex items-center justify-between p-4 bg-white/[0.02] rounded-xl border border-white/5">
+                <div class="flex items-center justify-between p-4 bg-white/2 rounded-xl border border-white/5">
                     <div>
                         <p class="text-white font-bold text-sm">Account Status</p>
                         <p class="text-xs text-gray-500 mt-1">If deactivated, the user will lose all access immediately.</p>
@@ -83,7 +83,7 @@
                 </div>
             </div>
 
-            <div class="p-8 bg-white/[0.02] border-t border-dark-border flex gap-4">
+            <div class="p-8 bg-white/2 border-t border-dark-border flex gap-4">
                 <button type="submit" class="flex-1 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl transition shadow-lg shadow-blue-500/20 active:scale-95">
                     Save Changes
                 </button>

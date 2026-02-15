@@ -29,7 +29,7 @@
                 </h4>
                 <div class="space-y-6">
                     <div class="flex items-center gap-6">
-                        <div class="w-24 h-24 rounded-full bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center text-white text-3xl font-bold shadow-lg shadow-blue-900/20 flex-shrink-0">
+                        <div class="w-24 h-24 rounded-full bg-linear-to-br from-blue-600 to-indigo-700 flex items-center justify-center text-white text-3xl font-bold shadow-lg shadow-blue-900/20 shrink-0">
                             R
                         </div>
                         <div>

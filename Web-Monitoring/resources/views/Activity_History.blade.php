@@ -62,7 +62,7 @@
     </div>
 
     <div class="relative">
-        <div class="absolute left-27px top-0 bottom-0 w-px bg-gradient-to-b from-blue-500/50 via-gray-800 to-transparent"></div>
+        <div class="absolute left-27px top-0 bottom-0 w-px bg-linear-to-b from-blue-500/50 via-gray-800 to-transparent"></div>
 
         <div class="space-y-12">
             <div class="relative">

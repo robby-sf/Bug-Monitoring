@@ -119,7 +119,7 @@
             <a href="/issues" class="text-accent-blue text-sm hover:underline">View all</a>
         </div>
         <div class="divide-y divide-dark-border">
-            <div class="p-4 flex items-center justify-between hover:bg-white/[0.02] transition group">
+            <div class="p-4 flex items-center justify-between hover:bg-white/2 transition group">
                 <div class="flex items-center gap-4">
                     <div class="w-10 h-10 flex items-center justify-center bg-red-500/10 rounded-xl text-red-500 group-hover:scale-110 transition">
                         <i class="fas fa-bug"></i>
@@ -137,7 +137,7 @@
                     <span class="inline-block px-3 py-1 bg-purple-500/10 text-purple-400 text-[11px] font-medium rounded-full mt-1 border border-purple-500/20">In Progress</span>
                 </div>
             </div>
-            <div class="p-4 flex items-center justify-between hover:bg-white/[0.02] transition group">
+            <div class="p-4 flex items-center justify-between hover:bg-white/2 transition group">
                 <div class="flex items-center gap-4">
                     <div class="w-10 h-10 flex items-center justify-center bg-blue-500/10 rounded-xl text-blue-500 group-hover:scale-110 transition">
                         <i class="fas fa-database"></i>

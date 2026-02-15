@@ -18,7 +18,7 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-dark-border">
-                    <tr class="hover:bg-white/[0.02] transition group">
+                    <tr class="hover:bg-white/2 transition group">
                         <td class="p-6">
                             <div class="flex items-center gap-4">
                                 <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-xs shadow-lg shadow-blue-600/20">
@@ -34,7 +34,7 @@
                         </td>
                     </tr>
 
-                    <tr class="hover:bg-white/[0.02] transition group">
+                    <tr class="hover:bg-white/0.02 transition group">
                         <td class="p-6">
                             <div class="flex items-center gap-4">
                                 <div class="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold text-xs">
@@ -50,7 +50,7 @@
                         </td>
                     </tr>
 
-                    <tr class="hover:bg-white/[0.02] transition group">
+                    <tr class="hover:bg-white/2 transition group">
                         <td class="p-6">
                             <div class="flex items-center gap-4">
                                 <div class="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center text-white font-bold text-xs">
@@ -66,7 +66,7 @@
                         </td>
                     </tr>
 
-                    <tr class="hover:bg-white/[0.02] transition group">
+                    <tr class="hover:bg-white/2 transition group">
                         <td class="p-6">
                             <div class="flex items-center gap-4">
                                 <div class="w-10 h-10 rounded-full bg-orange-600 flex items-center justify-center text-white font-bold text-xs">
@@ -82,7 +82,7 @@
                         </td>
                     </tr>
 
-                    <tr class="hover:bg-white/[0.02] transition group">
+                    <tr class="hover:bg-white/2 transition group">
                         <td class="p-6">
                             <div class="flex items-center gap-4">
                                 <div class="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center text-white font-bold text-xs">
@@ -98,7 +98,7 @@
                         </td>
                     </tr>
 
-                    <tr class="hover:bg-white/[0.02] transition group">
+                    <tr class="hover:bg-white/2 transition group">
                         <td class="p-6">
                             <div class="flex items-center gap-4">
                                 <div class="w-10 h-10 rounded-full bg-teal-600 flex items-center justify-center text-white font-bold text-xs">
