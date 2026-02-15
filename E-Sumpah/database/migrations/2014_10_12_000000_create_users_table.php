@@ -15,8 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('nik')->unique()->nullable(); // Tambahan untuk NIK jika diperlukan
+            $table->string('no_hp')->nullable();        // Tambahan untuk No HP
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            
+            // Kolom Role: Otomatis 'user' saat pendaftaran baru
+            $table->string('role')->default('user'); 
+            
             $table->rememberToken();
             $table->timestamps();
         });
