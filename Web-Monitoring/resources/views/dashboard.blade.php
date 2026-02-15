@@ -74,23 +74,40 @@
             </div>
         </div>
         
-        <div class="bg-dark-card border border-dark-border rounded-2xl p-6">
-            <h4 class="text-white font-bold text-lg mb-6">Recent Activity</h4>
+        <div class="bg-dark-card border border-dark-border rounded-2xl p-6 shadow-sm">
+            <div class="flex justify-between items-center mb-8">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-bolt text-blue-500"></i>
+                    <h4 class="text-white font-bold text-lg">Recent Activity</h4>
+                </div>
+                <a href="/activity-history" class="text-[11px] font-bold text-blue-500 uppercase tracking-wider hover:text-blue-400 bg-blue-500/10 px-3 py-1.5 rounded-lg transition-all active:scale-95 border border-blue-500/20">
+                    View History
+                </a>
+            </div>
+
             <div class="space-y-6">
-                <div class="relative pl-6 border-l border-gray-800">
+                <div class="relative pl-6 border-l border-white/5">
                     <div class="absolute w-3 h-3 bg-blue-500 rounded-full -left-[6.5px] top-1 shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
                     <p class="text-sm text-white font-medium">Issue #402 Created</p>
-                    <p class="text-xs text-gray-500 mt-1">10 minutes ago by Sarah Chen</p>
+                    <p class="text-xs text-gray-500 mt-1 uppercase font-semibold tracking-tighter">10 minutes ago • Sarah Chen</p>
                 </div>
-                <div class="relative pl-6 border-l border-gray-800">
-                    <div class="absolute w-3 h-3 bg-green-500 rounded-full -left-[6.5px] top-1"></div>
+                
+                <div class="relative pl-6 border-l border-white/5">
+                    <div class="absolute w-3 h-3 bg-green-500 rounded-full -left-[6.5px] top-1 shadow-[0_0_10px_rgba(34,197,94,0.3)]"></div>
                     <p class="text-sm text-white font-medium">Critical Bug Resolved</p>
-                    <p class="text-xs text-gray-500 mt-1">2 hours ago by Mike Davis</p>
+                    <p class="text-xs text-gray-500 mt-1 uppercase font-semibold tracking-tighter">2 hours ago • Mike Davis</p>
                 </div>
-                <div class="relative pl-6 border-l border-gray-800">
-                    <div class="absolute w-3 h-3 bg-yellow-500 rounded-full -left-[6.5px] top-1"></div>
+                
+                <div class="relative pl-6 border-l border-white/5">
+                    <div class="absolute w-3 h-3 bg-yellow-500 rounded-full -left-[6.5px] top-1 shadow-[0_0_10px_rgba(234,179,8,0.3)]"></div>
                     <p class="text-sm text-white font-medium">Status Updated to Review</p>
-                    <p class="text-xs text-gray-500 mt-1">5 hours ago by Admin</p>
+                    <p class="text-xs text-gray-500 mt-1 uppercase font-semibold tracking-tighter">5 hours ago • Admin</p>
+                </div>
+
+                <div class="relative pl-6 border-l border-white/5">
+                    <div class="absolute w-3 h-3 bg-blue-500 rounded-full -left-[6.5px] top-1 shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
+                    <p class="text-sm text-white font-medium">Issue #399 Created</p>
+                    <p class="text-xs text-gray-500 mt-1 uppercase font-semibold tracking-tighter">10 minutes ago • Sarah Chen</p>
                 </div>
             </div>
         </div>
@@ -99,7 +116,7 @@
     <div class="bg-dark-card border border-dark-border rounded-2xl overflow-hidden shadow-xl">
         <div class="p-6 border-b border-dark-border flex justify-between items-center bg-white/5">
             <h4 class="text-white font-bold">Recent Issues</h4>
-            <button class="text-accent-blue text-sm hover:underline">View all</button>
+            <a href="/issues" class="text-accent-blue text-sm hover:underline">View all</a>
         </div>
         <div class="divide-y divide-dark-border">
             <div class="p-4 flex items-center justify-between hover:bg-white/[0.02] transition group">
