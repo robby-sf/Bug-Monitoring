@@ -11,12 +11,14 @@ class BugReceiverController extends Controller
     public function receive(Request $request)
     {
         Bug::create([
-            'app_name' => $request->app_name,
-            'message'  => $request->message,
-            'file'     => $request->file,
-            'line'     => $request->line,
+            'project_name' => $request->project_name, 
+            'message'      => $request->message,
+            'file'         => $request->file,
+            'line'         => $request->line,
+            'url'          => $request->url,
+            'status'       => $request->status ?? 'open',
         ]);
 
-        return response()->json(['status' => 'Log Berhasil Diterima!'], 200);
+        return response()->json(['status' => 'Log Berhasil Diterima!'], 201);
     }
 }
