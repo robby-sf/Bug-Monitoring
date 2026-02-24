@@ -11,24 +11,34 @@
         <div class="bg-dark-card border border-dark-border rounded-2xl p-8 shadow-sm">
             <h4 class="text-white font-bold text-lg mb-6 flex items-center gap-2">
                 <i class="fas fa-user-gear text-accent-blue"></i> General Settings
-            </h4>
-            <div class="space-y-6">
-                <div>
-                    <label class="block text-sm font-medium text-gray-400 mb-2">Organization Name</label>
-                    <input type="text" value="BugHunter" 
+            </h4>            
+            <form action="{{ route('profile.update') }}" method="POST" class="space-y-6">
+                @csrf
+                @method('PUT') <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-2">First Name</label>
+                    <input type="text" name="first_name" value="{{ Auth::user()->first_name }}" 
                         class="w-full bg-dark-bg border border-dark-border text-white px-4 py-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition">
                 </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-2">Last Name</label>
+                    <input type="text" name="last_name" value="{{ Auth::user()->last_name }}" 
+                        class="w-full bg-dark-bg border border-dark-border text-white px-4 py-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition">
+                </div>
+
                 <div>
                     <label class="block text-sm font-medium text-gray-400 mb-2">Admin Email</label>
-                    <input type="email" value="admin@bughunter.dev" 
-                        class="w-full bg-dark-bg border border-dark-border text-white px-4 py-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition">
+                    <input type="email" name="email" value="{{ Auth::user()->email }}" 
+                        class="w-full bg-dark-bg border border-dark-border text-gray-500 px-4 py-3 rounded-xl outline-none cursor-not-allowed" readonly title="Email cannot be changed">
+                    <p class="text-[10px] text-gray-600 mt-1 italic">*Email account cannot be changed for security reasons.</p>
                 </div>
+
                 <div class="pt-2">
-                    <button class="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition shadow-lg shadow-blue-500/20">
+                    <button type="submit" class="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition shadow-lg shadow-blue-500/20 active:scale-95">
                         Save Changes
                     </button>
                 </div>
-            </div>
+            </form>
         </div>
 
         <div class="bg-dark-card border border-dark-border rounded-2xl p-8 shadow-sm">

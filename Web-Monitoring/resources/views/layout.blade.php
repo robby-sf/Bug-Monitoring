@@ -53,12 +53,29 @@
 
             <div class="p-4 border-t border-dark-border">
                 <a href="/profile" class="flex items-center gap-3 p-2 hover:bg-white/5 rounded-xl transition">
-                    <div class="w-9 h-9 bg-gray-800 rounded-full border border-gray-700"></div>
-                    <div class="flex-1 overflow-hidden">
-                        <p class="text-sm text-white font-medium truncate">Robby Developer</p>
-                        <p class="text-xs text-gray-500 truncate">Administrator</p>
+                    <div class="w-9 h-9 bg-gray-800 rounded-full border border-gray-700 overflow-hidden">
+                        @if(Auth::user()->avatar)
+                            <img src="{{ Storage::url(Auth::user()->avatar) }}" alt="Profile" class="w-full h-full object-cover">
+                        @else
+                            <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->first_name) }}&background=0D8ABC&color=fff" alt="Profile">
+                        @endif
                     </div>
-                    <i class="fas fa-right-from-bracket text-gray-600 hover:text-red-400"></i>
+
+                    <div class="flex-1 overflow-hidden">
+                        <p class="text-sm text-white font-medium truncate">
+                            {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
+                        </p>
+                        <p class="text-xs text-gray-500 truncate">
+                            {{ ucfirst(Auth::user()->role) }}
+                        </p>
+                    </div>
+
+                    <form action="/logout" method="POST" id="logout-form">
+                        @csrf
+                        <button type="submit" class="text-gray-600 hover:text-red-400">
+                            <i class="fas fa-right-from-bracket"></i>
+                        </button>
+                    </form>
                 </a>
             </div>
         </aside>
