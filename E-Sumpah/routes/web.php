@@ -39,3 +39,9 @@ Route::middleware(['auth'])->group(function () {
     });
 
 });
+
+// routes error testing untuk memastikan log error masuk ke Web Monitoring
+Route::get('/tes-error-monitoring', function () {
+    // Kita panggil variabel yang nggak pernah kita buat
+    return $data_rahasia_bapenda; 
+});

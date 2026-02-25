@@ -11,7 +11,7 @@ class DashboardController extends Controller
     public function index()
     {
         // Menghitung statistik berdasarkan status di database
-        $totalIssues = 0; // Bug::count(); // Total semua bug
+        $totalIssues = Bug::count(); // Total semua bug
         $openIssues = Bug::where('status', 'open')->count();
         $resolvedIssues = Bug::where('status', 'fixed')->count();
         $criticalIssues = Bug::where('message', 'LIKE', '%critical%')->count(); // Contoh filter sederhana

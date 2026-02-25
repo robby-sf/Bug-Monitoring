@@ -19,13 +19,9 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
-    /**
-     * Register the exception handling callbacks for the application.
-     */
     public function register(): void
     {
         $this->reportable(function (Throwable $e) {
-            // Logika untuk mengirim error ke Web Monitoring
             try {
                 Http::post('http://localhost:8001/api/logs', [
                     'project_name' => 'e-Sumpah Dummy',
@@ -35,7 +31,6 @@ class Handler extends ExceptionHandler
                     'url'          => request()->fullUrl(),
                 ]);
             } catch (Throwable $apiError) {
-                // Jika web monitoring mati, jangan sampai bikin web dummy ini ikut mati total
                 logger('Gagal mengirim log ke monitoring: ' . $apiError->getMessage());
             }
         });
