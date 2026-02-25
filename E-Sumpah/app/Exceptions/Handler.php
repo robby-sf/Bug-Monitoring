@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Http; // Tambahkan ini untuk kirim data via API
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -18,13 +19,20 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
-    /**
-     * Register the exception handling callbacks for the application.
-     */
     public function register(): void
     {
         $this->reportable(function (Throwable $e) {
-            //
+            try {
+                Http::post('http://localhost:8001/api/logs', [
+                    'project_name' => 'e-Sumpah Dummy',
+                    'message'      => $e->getMessage(),
+                    'file'         => $e->getFile(),
+                    'line'         => $e->getLine(),
+                    'url'          => request()->fullUrl(),
+                ]);
+            } catch (Throwable $apiError) {
+                logger('Gagal mengirim log ke monitoring: ' . $apiError->getMessage());
+            }
         });
     }
 }

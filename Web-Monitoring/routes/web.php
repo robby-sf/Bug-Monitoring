@@ -3,19 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IssueController;
+use App\Http\Controllers\DashboardController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-
+Route::get('/', [DashboardController::class, 'index']);
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/issues', function () {
     return view('Issues');
 });
@@ -64,3 +55,4 @@ Route::get('/issues/{id}', [IssueController::class, 'show'])->name('issues.show'
 
 // Endpoint: http://localhost:8000/api/report-bug
 Route::post('/report-bug', [IssueController::class, 'apiStore']);
+
