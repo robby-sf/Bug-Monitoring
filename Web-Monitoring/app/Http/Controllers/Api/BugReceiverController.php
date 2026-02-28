@@ -21,4 +21,4 @@ class BugReceiverController extends Controller
 
         return response()->json(['status' => 'Log Berhasil Diterima!'], 201);
     }
-}
+}  

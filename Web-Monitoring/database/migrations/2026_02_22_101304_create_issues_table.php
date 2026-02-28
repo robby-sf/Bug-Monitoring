@@ -14,11 +14,17 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->text('technical_details')->nullable();
+            
+            $table->string('url')->nullable();
+            $table->string('environment')->nullable();
+            $table->json('payload')->nullable();
+            $table->longText('stack_trace')->nullable();
+            
             $table->enum('severity', ['Critical', 'High', 'Medium', 'Low'])->default('Medium');
             $table->enum('status', ['open', 'in-progress', 'resolved', 'closed'])->default('open');
-            $table->string('category')->default('General'); 
-            
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); 
+            $table->enum('category', ['Frontend', 'Backend', 'Database', 'Security', 'Performance', 'Network', 'General'])->default('General'); 
+
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null'); 
             
             $table->timestamps();
         });

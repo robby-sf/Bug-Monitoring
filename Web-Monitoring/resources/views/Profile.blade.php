@@ -1,149 +1,123 @@
 @extends('layout')
 
 @section('content')
-    <div class="mb-8">
-        <h2 class="text-3xl font-extrabold text-white tracking-tight">My Profile</h2>
-        <p class="text-gray-500 mt-1 font-medium">Manage your personal information and security settings.</p>
-    </div>
+    @php /** @var \App\Models\User $user */ $user = Auth::user(); @endphp
 
-    <div class="max-w-4xl grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8">
-        <nav class="space-y-2">
-            <a href="#general" class="flex items-center gap-3 p-3 text-blue-500 bg-blue-500/10 rounded-xl font-bold transition">
-                <i class="fas fa-user text-sm"></i> General
-            </a>
-            <a href="#security" class="flex items-center gap-3 p-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-xl transition">
-                <i class="fas fa-lock text-sm"></i> Security
-            </a>
-            <a href="#api-keys" class="flex items-center gap-3 p-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-xl transition">
-                <i class="fas fa-key text-sm"></i> API Access
-            </a>
-            <a href="#integrations" class="flex items-center gap-3 p-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-xl transition">
-                <i class="fas fa-puzzle-piece text-sm"></i> Integrations
-            </a>
-        </nav>
+    <div class="max-w-3xl mx-auto">
+        <div class="mb-8">
+            <h2 class="text-3xl font-extrabold text-white tracking-tight">My Profile</h2>
+            <p class="text-gray-500 mt-1 font-medium">Manage your personal information.</p>
+        </div>
 
-        <div class="space-y-8">
-            <div id="general" class="bg-dark-card border border-dark-border rounded-2xl p-8 shadow-sm">
-                <h4 class="text-white font-bold text-lg mb-6 flex items-center gap-2">
-                    <i class="fas fa-user-gear text-blue-500"></i> General Information
-                </h4>
-                <div class="space-y-6">
-                    <div class="flex items-center gap-6">
-                        <div class="w-24 h-24 rounded-full bg-linear-to-br from-blue-600 to-indigo-700 flex items-center justify-center text-white text-3xl font-bold shadow-lg shadow-blue-900/20 shrink-0">
-                            R
-                        </div>
-                        <div>
-                            <p class="text-gray-400 text-sm mb-2">Update your profile picture</p>
-                            <div class="flex gap-3">
-                                <button class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-xl transition active:scale-95">
-                                    Upload New Photo
-                                </button>
-                                <button class="px-5 py-2.5 bg-gray-800 hover:bg-gray-700 text-gray-400 text-sm font-bold rounded-xl transition">
+        @if(session('success'))
+            <div class="mb-8 bg-green-500/10 border border-green-500/20 text-green-400 px-6 py-4 rounded-xl flex items-center gap-3 shadow-sm">
+                <i class="fas fa-check-circle text-lg"></i>
+                <span class="font-medium text-sm">{{ session('success') }}</span>
+            </div>
+        @endif
+
+        <div class="bg-[#0f0f0f] border border-white/10 rounded-3xl p-8 sm:p-10 shadow-xl">
+            <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data" class="space-y-8">
+                @csrf
+                @method('PUT')
+
+                <div class="flex flex-col sm:flex-row items-center gap-8 pb-8 border-b border-white/5">
+                    <div class="relative group cursor-pointer w-28 h-28 shrink-0">
+                        <input type="file" name="avatar" id="avatarInput" accept="image/*" class="hidden" onchange="previewImage(this)">
+                        
+                        @if($user->avatar)
+                            <img id="avatarPreview" src="{{ Storage::url($user->avatar) }}" alt="Profile" class="w-full h-full object-cover rounded-full border-4 border-[#1a1a1a] shadow-lg">
+                        @else
+                            <div id="avatarPreviewAlt" class="w-full h-full rounded-full bg-indigo-600 flex items-center justify-center text-white text-4xl font-bold border-4 border-[#1a1a1a] shadow-lg">
+                                {{ strtoupper(substr($user->first_name, 0, 1) . substr($user->last_name, 0, 1)) }}
+                            </div>
+                            <img id="avatarPreview" class="hidden w-full h-full object-cover rounded-full border-4 border-[#1a1a1a] shadow-lg">
+                        @endif
+
+                        <label for="avatarInput" class="absolute inset-0 bg-black/60 rounded-full flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+                            <i class="fas fa-camera text-white text-xl"></i>
+                            <span class="text-xs text-white font-bold mt-1">Upload</span>
+                        </label>
+                    </div>
+                    
+                    <div class="text-center sm:text-left">
+                        <h4 class="text-white font-bold text-lg mb-1">Profile Picture</h4>
+                        <p class="text-zinc-500 text-sm mb-4">PNG, JPG or GIF. Maximum size of 2MB.</p>
+                        <div class="flex justify-center sm:justify-start gap-3">
+                            <label for="avatarInput" class="px-5 py-2.5 bg-[#1a1a1a] hover:bg-[#252525] border border-white/10 text-white text-sm font-bold rounded-xl transition cursor-pointer shadow-inner active:scale-95">
+                                Choose File
+                            </label>
+                            @if($user->avatar)
+                                <button type="button" onclick="document.getElementById('removeAvatarForm').submit()" class="px-5 py-2.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 text-sm font-bold rounded-xl transition active:scale-95">
                                     Remove
                                 </button>
-                            </div>
+                            @endif
                         </div>
                     </div>
+                </div>
 
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-sm font-medium text-gray-400 mb-2">Full Name</label>
-                        <input type="text" value="Robby Developer" 
-                            class="w-full bg-dark-bg border border-dark-border text-white px-4 py-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition">
+                        <label class="block text-xs font-bold text-zinc-400 mb-2 uppercase tracking-wide">First Name</label>
+                        <input type="text" name="first_name" value="{{ $user->first_name }}" required
+                            class="w-full bg-[#1a1a1a] border border-white/10 text-white px-4 py-3.5 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition shadow-inner">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-400 mb-2">Email Address</label>
-                        <input type="email" value="robby@bughunter.dev" disabled
-                            class="w-full bg-dark-bg border border-dark-border text-gray-500 px-4 py-3 rounded-xl cursor-not-allowed">
-                        <p class="text-xs text-gray-600 mt-1">Contact support to change your email.</p>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-400 mb-2">Role</label>
-                        <input type="text" value="Administrator" disabled
-                            class="w-full bg-dark-bg border border-dark-border text-gray-500 px-4 py-3 rounded-xl cursor-not-allowed">
-                    </div>
-
-                    <div class="pt-2">
-                        <button class="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition shadow-lg shadow-blue-500/20 active:scale-95">
-                            Save General Changes
-                        </button>
+                        <label class="block text-xs font-bold text-zinc-400 mb-2 uppercase tracking-wide">Last Name</label>
+                        <input type="text" name="last_name" value="{{ $user->last_name }}" required
+                            class="w-full bg-[#1a1a1a] border border-white/10 text-white px-4 py-3.5 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition shadow-inner">
                     </div>
                 </div>
-            </div>
 
-            <div id="security" class="bg-dark-card border border-dark-border rounded-2xl p-8 shadow-sm">
-                <h4 class="text-white font-bold text-lg mb-6 flex items-center gap-2">
-                    <i class="fas fa-shield-alt text-blue-500"></i> Security
-                </h4>
-                <div class="space-y-6">
+                <div>
+                    <label class="block text-xs font-bold text-zinc-400 mb-2 uppercase tracking-wide">Phone Number <span class="text-zinc-600 font-normal lowercase tracking-normal">(Optional)</span></label>
+                    <input type="text" name="phone_number" value="{{ $user->phone_number }}" placeholder="e.g. +62 812 3456 7890"
+                        class="w-full bg-[#1a1a1a] border border-white/10 text-white px-4 py-3.5 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition shadow-inner">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-white/5">
                     <div>
-                        <label class="block text-sm font-medium text-gray-400 mb-2">Current Password</label>
-                        <input type="password" placeholder="Enter your current password" 
-                            class="w-full bg-dark-bg border border-dark-border text-white px-4 py-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition placeholder:text-gray-700">
+                        <label class="block text-xs font-bold text-zinc-400 mb-2 uppercase tracking-wide">Email Address</label>
+                        <input type="email" value="{{ $user->email }}" disabled
+                            class="w-full bg-[#121212] border border-white/5 text-zinc-500 px-4 py-3.5 rounded-xl cursor-not-allowed opacity-70">
+                        <p class="text-[11px] text-zinc-500 mt-2"><i class="fas fa-lock mr-1 text-zinc-600"></i> Contact admin to change email.</p>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-400 mb-2">New Password</label>
-                        <input type="password" placeholder="Enter a new password" 
-                            class="w-full bg-dark-bg border border-dark-border text-white px-4 py-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition placeholder:text-gray-700">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-400 mb-2">Confirm New Password</label>
-                        <input type="password" placeholder="Confirm your new password" 
-                            class="w-full bg-dark-bg border border-dark-border text-white px-4 py-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition placeholder:text-gray-700">
-                    </div>
-                    <div class="pt-2">
-                        <button class="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition shadow-lg shadow-blue-500/20 active:scale-95">
-                            Update Password
-                        </button>
+                        <label class="block text-xs font-bold text-zinc-400 mb-2 uppercase tracking-wide">System Role</label>
+                        <input type="text" value="{{ ucfirst($user->role) }}" disabled
+                            class="w-full bg-[#121212] border border-white/5 text-indigo-400 font-bold px-4 py-3.5 rounded-xl cursor-not-allowed opacity-70">
                     </div>
                 </div>
-            </div>
 
-            <div id="api-keys" class="bg-dark-card border border-dark-border rounded-2xl p-8 shadow-sm border-l-4 border-l-red-500/30">
-                <div class="flex justify-between items-center mb-6">
-                    <h4 class="text-white font-bold text-lg flex items-center gap-2">
-                        <i class="fas fa-key text-blue-500"></i> API Keys
-                    </h4>
-                </div>
-                <div class="space-y-4">
-                    <div class="flex gap-2">
-                        <div class="flex-1 bg-dark-bg border border-dark-border text-gray-400 px-4 py-3 rounded-xl font-mono text-sm flex items-center justify-between">
-                            <span>sk_live_51Aa7 ... Q8Q</span>
-                            <button class="text-blue-500 hover:text-blue-400 text-xs font-bold uppercase tracking-tighter">Regenerate</button>
-                        </div>
-                    </div>
-                    <button class="w-full py-3 bg-gray-800 hover:bg-gray-700 text-white font-bold rounded-xl transition">
-                        <i class="fas fa-plus mr-2 text-xs"></i> Create New API Key
+                <div class="pt-6 flex items-center justify-end border-t border-white/5">
+                    <button type="submit" class="w-full sm:w-auto px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-bold rounded-xl transition shadow-lg shadow-indigo-500/20 active:scale-95 flex items-center justify-center gap-2">
+                        <i class="fas fa-save"></i> Save Changes
                     </button>
                 </div>
-            </div>
+            </form>
 
-            <div id="integrations" class="bg-dark-card border border-dark-border rounded-2xl p-8 shadow-sm">
-                <h4 class="text-white font-bold text-lg mb-6 flex items-center gap-2">
-                    <i class="fas fa-puzzle-piece text-blue-500"></i> Integrations
-                </h4>
-                <div class="space-y-4">
-                    <div class="flex items-center justify-between p-4 bg-dark-bg border border-dark-border rounded-xl">
-                        <div class="flex items-center gap-4">
-                            <i class="fab fa-github text-xl text-white"></i>
-                            <div>
-                                <p class="text-white font-medium">GitHub</p>
-                                <p class="text-xs text-gray-500">Connect to track issues on your repositories.</p>
-                            </div>
-                        </div>
-                        <button class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-lg transition">Connect</button>
-                    </div>
-                    <div class="flex items-center justify-between p-4 bg-dark-bg border border-dark-border rounded-xl">
-                        <div class="flex items-center gap-4">
-                            <i class="fab fa-slack text-xl text-white"></i>
-                            <div>
-                                <p class="text-white font-medium">Slack</p>
-                                <p class="text-xs text-gray-500">Get real-time notifications in your Slack channels.</p>
-                            </div>
-                        </div>
-                        <button class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-lg transition">Connect</button>
-                    </div>
-                </div>
-            </div>
+            @if($user->avatar)
+                <form id="removeAvatarForm" action="{{ route('profile.remove_avatar') }}" method="POST" class="hidden">
+                    @csrf
+                    @method('DELETE')
+                </form>
+            @endif
         </div>
     </div>
+
+    <script>
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('avatarPreview').src = e.target.result;
+                    document.getElementById('avatarPreview').classList.remove('hidden');
+                    
+                    var altAvatar = document.getElementById('avatarPreviewAlt');
+                    if(altAvatar) altAvatar.classList.add('hidden');
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 @endsection

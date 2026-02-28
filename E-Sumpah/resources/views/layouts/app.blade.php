@@ -34,7 +34,7 @@
 
     <div class="flex h-screen overflow-hidden">
         
-        <aside class="w-64 bg-[#343a40] text-white flex-shrink-0 flex flex-col transition-all duration-300">
+        <aside class="w-64 bg-[#343a40] text-white shrink-0 flex flex-col transition-all duration-300">
             <div class="h-14 flex items-center px-4 bg-[#2c313a] border-b border-gray-600">
                 <div class="flex items-center gap-2 font-bold text-lg">
                     <div class="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center text-xs text-black">A</div>
@@ -122,5 +122,28 @@
             </main>
         </div>
     </div>
+
+    <script>
+        // Script ini akan otomatis mendeteksi setiap ada error Javascript di halaman web ini
+        window.addEventListener('error', function(event) {
+            
+            fetch("http://NAMADOMAIN-BUGHUNTER-KAMU.test/api/report-bug", { // <-- WAJIB: Ganti dengan URL domain Laragon BugHunter-mu
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "X-API-KEY": "rahasia-12345" // <-- WAJIB: Sesuaikan dengan API Key yang kamu buat di DB BugHunter
+                },
+                body: JSON.stringify({
+                    title: "Auto-Report: " + event.message,
+                    description: `Error terjadi di file ${event.filename} pada baris ${event.lineno}. URL: ${window.location.href}`,
+                    severity: "High",
+                    category: "Frontend"
+                })
+            })
+            .then(response => console.log("System: Bug berhasil dikirim ke BugHunter!"))
+            .catch(error => console.error("System: Gagal lapor bug."));
+        });
+    </script>
 </body>
 </html>
