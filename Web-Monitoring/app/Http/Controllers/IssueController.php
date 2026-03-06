@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Issue;
+use App\Models\IssueActivity;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -157,7 +159,7 @@ class IssueController extends Controller
         ]);
 
         // 2. Simpan ke Database
-        $issue = \App\Models\Issue::create([
+        $issue = Issue::create([
             'issue_id'          => 'BUG-' . strtoupper(\Illuminate\Support\Str::random(5)),
             'title'             => $request->title,
             'category'          => $request->category,
@@ -182,5 +184,12 @@ class IssueController extends Controller
         ]);
 
         return redirect()->route('dashboard')->with('success', 'Bug berhasil dilaporkan!');
+    }
+
+    public function create()
+    {
+        // Pastikan nama view ini sesuai dengan file blade form Report Bug kamu.
+        // Biasanya disimpan di resources/views/issues/create.blade.php
+        return view('Report_bug'); 
     }
 }
