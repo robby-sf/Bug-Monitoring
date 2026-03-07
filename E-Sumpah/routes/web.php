@@ -40,8 +40,15 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
-// routes error testing untuk memastikan log error masuk ke Web Monitoring
+
+// Route untuk testing error monitoring
 Route::get('/tes-error-monitoring', function () {
-    // Kita panggil variabel yang nggak pernah kita buat
     return $data_rahasia_bapenda; 
+});
+
+Route::get('/test-db', [DashboardController::class, 'testDb']);
+
+Route::get('/test-bug/null', function () {
+    $user = null;
+    return $user->name; 
 });

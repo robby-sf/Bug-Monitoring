@@ -14,9 +14,9 @@
             theme: {
                 extend: {
                     colors: {
-                        dark: '#2c313a', // Warna sidebar
-                        primary: '#1d8cf8', // Warna biru tombol
-                        active: '#2780e3', // Warna menu aktif
+                        dark: '#2c313a', 
+                        primary: '#1d8cf8', 
+                        active: '#2780e3', 
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -122,28 +122,6 @@
             </main>
         </div>
     </div>
-
-    <script>
-        // Script ini akan otomatis mendeteksi setiap ada error Javascript di halaman web ini
-        window.addEventListener('error', function(event) {
-            
-            fetch("http://NAMADOMAIN-BUGHUNTER-KAMU.test/api/report-bug", { // <-- WAJIB: Ganti dengan URL domain Laragon BugHunter-mu
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json",
-                    "X-API-KEY": "rahasia-12345" // <-- WAJIB: Sesuaikan dengan API Key yang kamu buat di DB BugHunter
-                },
-                body: JSON.stringify({
-                    title: "Auto-Report: " + event.message,
-                    description: `Error terjadi di file ${event.filename} pada baris ${event.lineno}. URL: ${window.location.href}`,
-                    severity: "High",
-                    category: "Frontend"
-                })
-            })
-            .then(response => console.log("System: Bug berhasil dikirim ke BugHunter!"))
-            .catch(error => console.error("System: Gagal lapor bug."));
-        });
-    </script>
+    @include('partials.bughunter-agent')
 </body>
 </html>
