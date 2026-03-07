@@ -15,7 +15,7 @@ class LoginController extends Controller
         'password' => ['required'],
     ]);
 
-    if (Auth::attempt(['nik' => $request->nik, 'password' => $request->password])) {
+    if (Auth::attempt(['nik' => $request->input('nik'), 'password' => $request->input('password')], true )) {
         $request->session()->regenerate();
 
         if (Auth::user()->role === 'admin') {

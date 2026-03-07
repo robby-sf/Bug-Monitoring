@@ -23,9 +23,9 @@
                     <a href="{{ url('/pendaftaran-data-baru') }}" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 uppercase transition">
                         Pendaftaran Data Baru
                     </a>
-                    <!-- <a href="#" onclick="bukaModalMutasi()" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 uppercase transition">
+                    <a href="#" onclick="bukaModalMutasi()" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 uppercase transition">
                         Mutasi Subjek Pajak
-                    </a> -->
+                    </a>
                     <a href="#" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 uppercase transition">
                         Pembetulan SPPT/SKP/STP
                     </a>
