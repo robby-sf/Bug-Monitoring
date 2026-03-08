@@ -51,7 +51,6 @@ class AuthController extends Controller
         return back()->withErrors(['email' => 'Invalid credentials']);
     }
 
-    // Update Profile (Phone & Avatar)
 public function updateProfile(Request $request) {
         /** @var \App\Models\User $user */
         $user = Auth::user();

@@ -3,7 +3,7 @@
     const BUGHUNTER_API = 'http://127.0.0.1:8001/api/report-bug';
     
     // Ambil kunci langsung dari .env e-Sumpah biar dinamis!
-    const API_KEY = '{{ env('BUGHUNTER_API_KEY', 'bh_live_0OWkrjVmXOBFAwiwVYefcFFgZErWs1fN') }}';
+    const API_KEY = '{{ env('BUGHUNTER_API_KEY', 'bh_live_eIBTXlwtIgWZXPdfUrG3AXJlWwpMf8Rf') }}';
 
     function kirimLaporanFrontend(judul, detail, kategori, severity) {
         fetch(BUGHUNTER_API, {
@@ -11,7 +11,7 @@
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'X-API-KEY': 'bh_live_wD3a91DtammBnKMwT7ANewuB6yqgMVvT'
+                'X-API-KEY': 'bh_live_eIBTXlwtIgWZXPdfUrG3AXJlWwpMf8Rf'
             },
             body: JSON.stringify({
                 title: judul,

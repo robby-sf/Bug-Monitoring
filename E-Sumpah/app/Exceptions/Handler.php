@@ -74,7 +74,7 @@ class Handler extends ExceptionHandler
                     'Accept' => 'application/json',
                     
                     // MENGAMBIL KUNCI DARI .ENV SECARA AMAN!
-                    'X-API-KEY' => env('BUGHUNTER_API_KEY', 'bh_live_wD3a91DtammBnKMwT7ANewuB6yqgMVvT')
+                    'X-API-KEY' => env('BUGHUNTER_API_KEY', 'bh_live_eIBTXlwtIgWZXPdfUrG3AXJlWwpMf8Rf')
                     
                 ])->post('http://127.0.0.1:8001/api/report-bug', [
                     // --- DATA STANDAR ---

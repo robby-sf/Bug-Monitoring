@@ -10,7 +10,7 @@ class ObjekBaruController extends Controller
 {
     public function create()
     {
-        // sleep(5); // --> Simulasi loading lama 5 detik
+        sleep(5); // --> Simulasi loading lama 5 detik
         return view('pendaftaranDataBaru');
     }
 
