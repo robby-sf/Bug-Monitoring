@@ -85,6 +85,11 @@ class IssueController extends Controller
 
     public function assign(Request $request, $id)
     {
+        // Guard: Hanya admin yang boleh assign
+        if (auth()->user()->role !== 'admin') {
+            abort(403, 'Unauthorized.');
+        }
+
         // 1. Validasi untuk memastikan user_id yang dikirim benar-benar ada di tabel users
         $request->validate([
             'user_id' => 'required|exists:users,id'
@@ -118,6 +123,11 @@ class IssueController extends Controller
 
     public function resolve($id)
     {
+        // Guard: Hanya admin & developer yang boleh resolve
+        if (!in_array(auth()->user()->role, ['admin', 'developer'])) {
+            abort(403, 'Unauthorized.');
+        }
+
         // 1. Cari issue-nya
         $issue = \App\Models\Issue::where('issue_id', $id)->firstOrFail();
 
@@ -144,6 +154,11 @@ class IssueController extends Controller
 
     public function store(Request $request)
     {
+        // Guard: Hanya admin & developer yang boleh report bug manual
+        if (!in_array(auth()->user()->role, ['admin', 'developer'])) {
+            abort(403, 'Unauthorized.');
+        }
+
         // 1. Validasi
         $request->validate([
             'title'             => 'required|string|max:255',
@@ -188,6 +203,11 @@ class IssueController extends Controller
 
     public function create()
     {
+        // Guard: Hanya admin & developer yang boleh akses form report bug
+        if (!in_array(auth()->user()->role, ['admin', 'developer'])) {
+            abort(403, 'Unauthorized.');
+        }
+
         // Pastikan nama view ini sesuai dengan file blade form Report Bug kamu.
         // Biasanya disimpan di resources/views/issues/create.blade.php
         return view('Report_bug'); 

@@ -19,6 +19,7 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
+    // === SEMUA ROLE (admin, developer, staff) ===
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
@@ -31,17 +32,6 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(IssueController::class)->group(function () {
         Route::get('/issues', 'index')->name('issues.index');
         Route::get('/issues/{id}', 'show')->name('issues.show');
-        Route::patch('/issues/{id}/assign', 'assign')->name('issues.assign');
-        Route::patch('/issues/{id}/resolve', 'resolve')->name('issues.resolve');
-        Route::get('/report-bug', 'create')->name('issues.create');
-        Route::post('/report-bug', 'store')->name('issues.store');
-    });
-
-    Route::controller(SettingsController::class)->group(function () {
-        Route::get('/settings', 'index')->name('settings.index');
-        Route::post('/settings/api-keys', 'generateApiKey')->name('settings.api.generate');
-        Route::put('/settings/api-keys/{id}/regenerate', 'regenerateApiKey')->name('settings.api.regenerate');
-        Route::delete('/settings/api-keys/{id}/revoke', 'revokeApiKey')->name('settings.api.revoke');
     });
 
     Route::get('/team', [TeamController::class, 'index'])->name('team.index');
@@ -52,9 +42,29 @@ Route::middleware(['auth'])->group(function () {
         return back();
     })->name('notifications.readAll');
 
-    Route::get('/projects', function () { return view('Projects'); });
-    Route::get('/project-view', function () { return view('Project_View'); });
-    Route::get('/edit-team', function () { return view('Edit_Team'); });
     Route::get('/notification', function () { return view('Notification'); });
     Route::get('/activity-history', function () { return view('Activity_History'); });
+
+    // === ADMIN + DEVELOPER SAJA ===
+    Route::middleware(['role:admin,developer'])->group(function () {
+        Route::patch('/issues/{id}/resolve', [IssueController::class, 'resolve'])->name('issues.resolve');
+        Route::get('/report-bug', [IssueController::class, 'create'])->name('issues.create');
+        Route::post('/report-bug', [IssueController::class, 'store'])->name('issues.store');
+    });
+
+    // === ADMIN SAJA ===
+    Route::middleware(['role:admin'])->group(function () {
+        Route::patch('/issues/{id}/assign', [IssueController::class, 'assign'])->name('issues.assign');
+
+        Route::controller(SettingsController::class)->group(function () {
+            Route::get('/settings', 'index')->name('settings.index');
+            Route::post('/settings/api-keys', 'generateApiKey')->name('settings.api.generate');
+            Route::put('/settings/api-keys/{id}/regenerate', 'regenerateApiKey')->name('settings.api.regenerate');
+            Route::delete('/settings/api-keys/{id}/revoke', 'revokeApiKey')->name('settings.api.revoke');
+        });
+
+        Route::get('/projects', function () { return view('Projects'); });
+        Route::get('/project-view', function () { return view('Project_View'); });
+        Route::get('/edit-team', function () { return view('Edit_Team'); });
+    });
 });

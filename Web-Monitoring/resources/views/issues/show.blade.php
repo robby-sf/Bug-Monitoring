@@ -118,6 +118,7 @@
                 <div class="bg-[#0f0f0f] border border-white/10 rounded-xl p-6 shadow-sm">
                     <h3 class="text-white text-sm font-medium mb-5">Assignee</h3>
                     
+                    @if(Auth::user()->role === 'admin')
                     @if($issue->user)
                         <div class="flex items-center gap-4 mb-6">
                             <div class="w-12 h-12 rounded-full bg-[#4f67d6] flex items-center justify-center text-white font-medium text-lg shadow-inner">
@@ -144,6 +145,30 @@
                         <button @click="isAssignModalOpen = true" type="button" class="relative z-10 w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium rounded-md border border-blue-500/50 transition-colors cursor-pointer active:scale-[0.98]">
                             Assign to Developer
                         </button>
+                    @endif
+                    @else
+                    {{-- Non-admin: hanya tampilkan info assignee tanpa tombol --}}
+                    @if($issue->user)
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-[#4f67d6] flex items-center justify-center text-white font-medium text-lg shadow-inner">
+                                {{ strtoupper(substr($issue->user->first_name, 0, 1) . substr($issue->user->last_name, 0, 1)) }}
+                            </div>
+                            <div>
+                                <p class="text-white text-base font-normal">{{ $issue->user->first_name }} {{ $issue->user->last_name }}</p>
+                                <p class="text-zinc-500 text-xs">{{ ucfirst($issue->user->role) }}</p>
+                            </div>
+                        </div>
+                    @else
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full border border-dashed border-zinc-700 bg-black/20 flex items-center justify-center text-zinc-600 font-medium shadow-inner">
+                                <i class="fas fa-user-slash"></i>
+                            </div>
+                            <div>
+                                <p class="text-zinc-400 text-base font-normal italic">Not Assigned</p>
+                                <p class="text-zinc-600 text-xs">Waiting for action</p>
+                            </div>
+                        </div>
+                    @endif
                     @endif
                 </div>
 
@@ -190,6 +215,7 @@
                     </div>
                 </div>
 
+                @if(in_array(Auth::user()->role, ['admin', 'developer']))
                 @if(strtolower($issue->status) !== 'resolved')
                     <button type="button" @click="isResolveModalOpen = true" class="mt-2 relative z-10 w-full py-4 bg-indigo-600/10 hover:bg-indigo-600 text-white font-semibold text-sm rounded-md transition-all flex items-center justify-center gap-2 border border-indigo-600/20 active:scale-[0.98] cursor-pointer group">
                         <i class="fas fa-check-circle text-xs text-indigo-400 group-hover:text-white transition-colors"></i> 
@@ -200,6 +226,15 @@
                         <i class="fas fa-check-double text-xs"></i> 
                         <span>Issue Resolved</span>
                     </div>
+                @endif
+                @else
+                {{-- Staff: hanya tampilkan status resolved badge jika sudah resolved --}}
+                @if(strtolower($issue->status) === 'resolved')
+                    <div class="mt-2 w-full py-4 bg-green-500/10 text-green-500 font-semibold text-sm rounded-md flex items-center justify-center gap-2 border border-green-500/20">
+                        <i class="fas fa-check-double text-xs"></i> 
+                        <span>Issue Resolved</span>
+                    </div>
+                @endif
                 @endif
             </div>
         </div>

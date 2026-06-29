@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BugHunter - Monitoring System</title>
-    @vite('resources/css/app.css')
+    <title>BugHunter Workspace</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+<style>
+        [x-cloak] { display: none !important; }
+    </style>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     
@@ -14,7 +18,7 @@
     <div class="flex h-screen overflow-hidden">
         <aside class="w-72 bg-dark-card border-r border-dark-border flex flex-col shadow-2xl">
             <div class="p-8">
-                <div class="flex items-center gap-3">
+                <div class="flex items-center gap-3"> 
                     <div class="w-10 h-10 bg-accent-blue rounded-xl flex items-center justify-center text-white shadow-[0_0_15px_rgba(59,130,246,0.5)]">
                         <i class="fas fa-bug-slash text-xl"></i>
                     </div>
@@ -41,10 +45,12 @@
                     <span class="font-medium">Team Members</span>
                 </a>
 
+                @if(Auth::user()->role === 'admin')
                 <a href="/settings" class="flex items-center gap-4 px-4 py-3 rounded-xl transition-all group {{ Request::is('settings') ? 'text-white bg-blue-600/10 border-l-4 border-blue-600' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
                     <i class="fas fa-gear {{ Request::is('settings') ? 'text-blue-500' : 'group-hover:text-blue-500' }}"></i>
                     <span class="font-medium">Settings</span>
                 </a>
+                @endif
             </nav>
 
             <div class="p-4 border-t border-dark-border">
@@ -136,14 +142,16 @@
                                 @endforelse
                             </div>
 
-                            <a href="/notifications" class="block p-3.5 text-center text-[11px] text-gray-500 hover:text-white transition font-bold border-t border-dark-border bg-white/1">
+                            <a href="/notification" class="block p-3.5 text-center text-[11px] text-gray-500 hover:text-white transition font-bold border-t border-dark-border bg-white/1">
                                 View All Notifications
                             </a>
                         </div>
                     </div>
+                    @if(in_array(Auth::user()->role, ['admin', 'developer']))
                     <a href="/report-bug" class="bg-accent-blue hover:bg-blue-600 text-white px-5 py-2.5 rounded-xl text-sm font-bold shadow-lg shadow-blue-900/20 transition active:scale-95 flex items-center">
                         <i class="fas fa-plus mr-2"></i> Report Bug
                     </a>
+                    @endif
                 </div>
             </header>
 
